@@ -9,6 +9,11 @@ const fs=require("fs");
 const app=express();
 const PORT=process.env.PORT||3000;
 const ROOT=__dirname;
+app.use(express.static(ROOT));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(ROOT, 'index.html'));
+});
 const db=new Database(process.env.DB_PATH||path.join(ROOT,"data.sqlite"));
 const UPLOAD_DIR=process.env.UPLOAD_DIR||path.join(ROOT,"uploads");
 fs.mkdirSync(UPLOAD_DIR,{recursive:true});
