@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: compass-study-group
+    runtime: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DB_PATH
+        value: /var/data/data.sqlite
+      - key: UPLOAD_DIR
+        value: /var/data/uploads
+      - key: SESSION_SECRET
+        generateValue: true
+    disk:
+      name: compass-data
+      mountPath: /var/data
+      sizeGB: 1
